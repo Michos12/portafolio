@@ -2,5 +2,5 @@
 // This file replaces environment.ts in production builds (see angular.json).
 export const environment = {
   production: true,
-  apiUrl: 'https://YOUR-BACKEND.onrender.com/api',
+  apiUrl: 'https://portfolio-api-vut4.onrender.com/api',
 };
