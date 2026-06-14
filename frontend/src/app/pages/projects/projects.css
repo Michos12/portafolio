@@ -1,0 +1,78 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+.project-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--accent-2);
+  background: rgba(129, 140, 248, 0.15);
+  border: 1px solid rgba(129, 140, 248, 0.3);
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+}
+
+.project-card h3 {
+  font-size: 1.15rem;
+}
+
+.project-desc {
+  color: var(--muted);
+  font-size: 0.93rem;
+  margin: 0.5rem 0 1rem;
+  flex: 1;
+}
+
+.tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.project-links {
+  display: flex;
+  gap: 1.2rem;
+}
+.project-links a {
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.empty {
+  text-align: center;
+  color: var(--muted);
+}
+
+.repo-card {
+  text-decoration: none;
+  color: var(--text);
+  transition: border-color 0.15s ease, transform 0.1s ease;
+}
+.repo-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+.repo-name {
+  font-size: 1.05rem;
+  color: var(--accent);
+}
+.repo-meta {
+  display: flex;
+  gap: 1rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-top: 0.75rem;
+}

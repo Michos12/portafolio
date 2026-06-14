@@ -1,0 +1,25 @@
+# --- Secretos / entorno ---
+.env
+*.env
+!.env.example
+
+# --- Python / backend ---
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+
+# --- Node / frontend ---
+node_modules/
+dist/
+.angular/
+*.log
+
+# --- Editor / SO ---
+.vscode/
+.idea/
+.claude/
+.DS_Store
+Thumbs.db

@@ -1,0 +1,81 @@
+<section class="section">
+  <h2 class="section-title">Projects</h2>
+  <p class="section-sub">Selected work, served dynamically from my own API.</p>
+
+  @if (loading()) {
+    <div class="grid">
+      @for (s of skeletons; track s) {
+        <div class="card project-card">
+          <div class="skeleton" style="height: 1.3rem; width: 60%; margin-bottom: 1rem;"></div>
+          <div class="skeleton" style="height: 0.9rem; width: 100%; margin-bottom: 0.5rem;"></div>
+          <div class="skeleton" style="height: 0.9rem; width: 80%; margin-bottom: 1.2rem;"></div>
+          <div class="skeleton" style="height: 1.4rem; width: 50%;"></div>
+        </div>
+      }
+    </div>
+  } @else if (error()) {
+    <div class="alert alert-error">{{ error() }}</div>
+  } @else if (projects().length === 0) {
+    <div class="card empty">
+      <p>No projects published yet — check back soon.</p>
+    </div>
+  } @else {
+    <div class="grid">
+      @for (project of projects(); track project.id) {
+        <article class="card project-card">
+          @if (project.featured) {
+            <span class="badge">Featured</span>
+          }
+          <h3>{{ project.title }}</h3>
+          <p class="project-desc">{{ project.description }}</p>
+
+          <div class="tech">
+            @for (tech of project.techStack; track tech) {
+              <span class="chip">{{ tech }}</span>
+            }
+          </div>
+
+          <div class="project-links">
+            @if (project.repoUrl) {
+              <a [href]="project.repoUrl" target="_blank" rel="noopener">Code →</a>
+            }
+            @if (project.liveUrl) {
+              <a [href]="project.liveUrl" target="_blank" rel="noopener">Live demo →</a>
+            }
+          </div>
+        </article>
+      }
+    </div>
+  }
+
+  <!-- GitHub activity -->
+  <h2 class="section-title" style="margin-top: 4rem;">Recent GitHub activity</h2>
+  <p class="section-sub">Pulled live from the GitHub API through my cached backend proxy.</p>
+
+  @if (reposLoading()) {
+    <div class="grid">
+      @for (s of skeletons; track s) {
+        <div class="card"><div class="skeleton" style="height: 3rem;"></div></div>
+      }
+    </div>
+  } @else if (reposError()) {
+    <div class="alert alert-error">{{ reposError() }}</div>
+  } @else {
+    <div class="grid">
+      @for (repo of repos(); track repo.name) {
+        <a class="card repo-card" [href]="repo.url" target="_blank" rel="noopener">
+          <h3 class="repo-name">{{ repo.name }}</h3>
+          @if (repo.description) {
+            <p class="project-desc">{{ repo.description }}</p>
+          }
+          <div class="repo-meta">
+            @if (repo.language) {
+              <span>{{ repo.language }}</span>
+            }
+            <span>★ {{ repo.stars }}</span>
+          </div>
+        </a>
+      }
+    </div>
+  }
+</section>

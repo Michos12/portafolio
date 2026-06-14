@@ -1,0 +1,55 @@
+<section class="section contact">
+  <h2 class="section-title">Get in touch</h2>
+  <p class="section-sub">Have a project or role in mind? Send me a message.</p>
+
+  @if (success()) {
+    <div class="alert alert-success">Thanks! Your message has been sent. I'll get back to you soon.</div>
+  }
+  @if (error()) {
+    <div class="alert alert-error">{{ error() }}</div>
+  }
+
+  <form class="card contact-form" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+    <div class="field">
+      <label for="name">Name</label>
+      <input id="name" type="text" formControlName="name" autocomplete="name" />
+      @if (form.controls.name.touched && form.controls.name.invalid) {
+        <small class="err">Please enter your name.</small>
+      }
+    </div>
+
+    <div class="field">
+      <label for="email">Email</label>
+      <input id="email" type="email" formControlName="email" autocomplete="email" />
+      @if (form.controls.email.touched && form.controls.email.invalid) {
+        <small class="err">Please enter a valid email.</small>
+      }
+    </div>
+
+    <div class="field">
+      <label for="body">Message</label>
+      <textarea id="body" rows="5" formControlName="body"></textarea>
+      @if (form.controls.body.touched && form.controls.body.invalid) {
+        <small class="err">Please write a message.</small>
+      }
+    </div>
+
+    <!-- Honeypot: hidden from humans; bots tend to fill it -->
+    <div class="hp" aria-hidden="true">
+      <label for="website">Website</label>
+      <input id="website" type="text" formControlName="website" tabindex="-1" autocomplete="off" />
+    </div>
+
+    <button class="btn btn-primary" type="submit" [disabled]="submitting()">
+      @if (submitting()) {
+        <span class="spinner"></span> Sending…
+      } @else {
+        Send message
+      }
+    </button>
+
+    @if (slow()) {
+      <p class="slow-hint">Waking up the server… this can take a few seconds on the first request.</p>
+    }
+  </form>
+</section>

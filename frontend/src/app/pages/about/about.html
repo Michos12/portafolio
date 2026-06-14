@@ -1,0 +1,36 @@
+<section class="section">
+  <h2 class="section-title">About me</h2>
+  <p class="section-sub">Full Stack Developer · Angular + Python</p>
+
+  <div class="about-grid">
+    <div class="about-bio">
+      <p>
+        I'm a Full Stack Developer who enjoys taking products from idea to production:
+        clean, accessible interfaces on the front, and well-structured, secure APIs on
+        the back.
+      </p>
+      <p>
+        I care about the details that make software trustworthy — input validation,
+        authentication, rate limiting, sensible error handling and fast load times.
+        I build with a decoupled mindset so each layer can scale and deploy independently.
+      </p>
+      <p>
+        This portfolio is a working example: an Angular SPA on the front, a FastAPI
+        service on the back, and a PostgreSQL database — each hosted on its own platform.
+      </p>
+    </div>
+
+    <div class="about-skills">
+      @for (group of skills; track group.label) {
+        <div class="card skill-card">
+          <h3>{{ group.label }}</h3>
+          <div class="skill-chips">
+            @for (item of group.items; track item) {
+              <span class="chip">{{ item }}</span>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

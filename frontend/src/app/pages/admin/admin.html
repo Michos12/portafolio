@@ -1,0 +1,97 @@
+<section class="section admin">
+  <h2 class="section-title">Admin</h2>
+
+  @if (!isLoggedIn()) {
+    <p class="section-sub">Sign in to manage projects.</p>
+    <form class="card login-form" [formGroup]="loginForm" (ngSubmit)="login()" novalidate>
+      @if (loginError()) {
+        <div class="alert alert-error">{{ loginError() }}</div>
+      }
+      <div class="field">
+        <label for="username">Username</label>
+        <input id="username" type="text" formControlName="username" autocomplete="username" />
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input id="password" type="password" formControlName="password" autocomplete="current-password" />
+      </div>
+      <button class="btn btn-primary" type="submit" [disabled]="busy()">
+        @if (busy()) { <span class="spinner"></span> Signing in… } @else { Sign in }
+      </button>
+    </form>
+  } @else {
+    <div class="admin-bar">
+      <p class="section-sub" style="margin: 0;">Manage your projects.</p>
+      <button class="btn btn-ghost" (click)="logout()">Log out</button>
+    </div>
+
+    @if (formError()) {
+      <div class="alert alert-error">{{ formError() }}</div>
+    }
+
+    <div class="admin-grid">
+      <!-- Form -->
+      <form class="card" [formGroup]="projectForm" (ngSubmit)="save()" novalidate>
+        <h3>{{ editingId() ? 'Edit project' : 'New project' }}</h3>
+        <div class="field">
+          <label for="title">Title</label>
+          <input id="title" type="text" formControlName="title" />
+        </div>
+        <div class="field">
+          <label for="description">Description</label>
+          <textarea id="description" rows="3" formControlName="description"></textarea>
+        </div>
+        <div class="field">
+          <label for="techStack">Tech stack (comma-separated)</label>
+          <input id="techStack" type="text" formControlName="techStack" placeholder="Angular, FastAPI, PostgreSQL" />
+        </div>
+        <div class="field">
+          <label for="repoUrl">Repo URL</label>
+          <input id="repoUrl" type="url" formControlName="repoUrl" />
+        </div>
+        <div class="field">
+          <label for="liveUrl">Live URL</label>
+          <input id="liveUrl" type="url" formControlName="liveUrl" />
+        </div>
+        <div class="field">
+          <label for="imageUrl">Image URL</label>
+          <input id="imageUrl" type="url" formControlName="imageUrl" />
+        </div>
+        <div class="row">
+          <label class="check"><input type="checkbox" formControlName="featured" /> Featured</label>
+          <div class="field order-field">
+            <label for="order">Order</label>
+            <input id="order" type="number" formControlName="order" />
+          </div>
+        </div>
+        <div class="form-actions">
+          <button class="btn btn-primary" type="submit" [disabled]="busy()">
+            {{ editingId() ? 'Update' : 'Create' }}
+          </button>
+          @if (editingId()) {
+            <button class="btn btn-ghost" type="button" (click)="resetForm()">Cancel</button>
+          }
+        </div>
+      </form>
+
+      <!-- List -->
+      <div class="admin-list">
+        @for (project of projects(); track project.id) {
+          <div class="card list-item">
+            <div>
+              <strong>{{ project.title }}</strong>
+              @if (project.featured) { <span class="chip">Featured</span> }
+              <p class="project-desc">{{ project.description }}</p>
+            </div>
+            <div class="list-actions">
+              <button class="btn btn-ghost btn-sm" (click)="edit(project.id)">Edit</button>
+              <button class="btn btn-ghost btn-sm danger" (click)="remove(project.id)">Delete</button>
+            </div>
+          </div>
+        } @empty {
+          <div class="card empty">No projects yet. Create your first one.</div>
+        }
+      </div>
+    </div>
+  }
+</section>

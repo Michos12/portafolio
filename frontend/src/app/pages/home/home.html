@@ -1,0 +1,21 @@
+<section class="hero section">
+  <p class="eyebrow">Hi, I'm Michel Corozo</p>
+  <h1 class="hero-title">
+    Full Stack Developer building <span class="grad">fast, reliable</span> web apps.
+  </h1>
+  <p class="hero-lead">
+    I design and ship end-to-end products — from Angular interfaces to Python APIs and
+    cloud databases. This very portfolio runs on a decoupled architecture I built myself.
+  </p>
+
+  <div class="hero-cta">
+    <a class="btn btn-primary" routerLink="/projects">View Projects</a>
+    <a class="btn btn-ghost" routerLink="/contact">Get in touch</a>
+  </div>
+
+  <div class="hero-stack">
+    @for (tech of stack; track tech) {
+      <span class="chip">{{ tech }}</span>
+    }
+  </div>
+</section>

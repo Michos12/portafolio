@@ -1,0 +1,41 @@
+# Render Blueprint — provisions the FastAPI backend automatically.
+# On Render: New + → Blueprint → connect this repo. Render reads this file.
+# Secret values (sync: false) must be filled in the Render dashboard after creation.
+services:
+  - type: web
+    name: portfolio-api
+    runtime: python
+    rootDir: backend
+    plan: free
+    region: oregon
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.13.4"
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_KEY
+        sync: false
+      # Render generates a strong random secret automatically (no weak dev value).
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_ALGORITHM
+        value: HS256
+      - key: ACCESS_TOKEN_EXPIRE_MINUTES
+        value: "60"
+      - key: ADMIN_USERNAME
+        sync: false
+      - key: ADMIN_PASSWORD_HASH
+        sync: false
+      - key: GITHUB_USERNAME
+        value: Michos12
+      - key: GITHUB_TOKEN
+        sync: false
+      - key: GITHUB_CACHE_TTL
+        value: "600"
+      # Set this to your Vercel domain after the frontend is deployed (CORS).
+      - key: FRONTEND_ORIGIN
+        sync: false
