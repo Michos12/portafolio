@@ -110,6 +110,10 @@
   color: var(--muted);
   font-size: 0.9rem;
 }
+.footer-links{
+  display: flex;
+  gap: 1rem;
+}
 
 .footer-links a {
   color: var(--muted);
