@@ -19,6 +19,9 @@ app = FastAPI(
     title="Portfolio API",
     version="1.0.0",
     description="Full Stack portfolio backend: projects, contact and GitHub.",
+    docs_url="/docs" if settings.enable_docs else None,
+    redoc_url="/redoc" if settings.enable_docs else None,
+    openapi_url="/openapi.json" if settings.enable_docs else None,
 )
 
 # Rate limiting (slowapi)

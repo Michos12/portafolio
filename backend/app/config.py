@@ -33,6 +33,11 @@ class Settings(BaseSettings):
     github_token: str = ""  # optional; raises the rate limit from 60 to 5000 req/h
     github_cache_ttl: int = 600  # seconds
 
+    # --- App ---
+    # Expose Swagger /docs and /openapi.json. Set to false in production to
+    # reduce the public API surface.
+    enable_docs: bool = True
+
     # --- CORS ---
     # Allowed origins, comma-separated. In production = your Vercel domain.
     frontend_origin: str = "http://localhost:4200"
