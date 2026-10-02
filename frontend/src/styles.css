@@ -1,5 +1,5 @@
 /* ---------- Design tokens ---------- */
-:root {
+/* :root {
   --bg: #0b1120;
   --bg-elev: #111a2e;
   --card: #131d33;
@@ -13,147 +13,99 @@
   --maxw: 1080px;
   --radius: 0.9rem;
   font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-}
+} */
 
-* {
-  box-sizing: border-box;
-}
+/* ---------- Fondo de la página ----------
+   margin: 0 quita los 8px que el navegador aplica al body por defecto.
 
-html,
+   El fondo del body se propaga a todo el lienzo, así que cubre la página entera
+   sin importar su altura. Tiene dos capas:
+   1. mountains.svg escalado al ancho de la ventana (100% auto) y desplazado 13.75vw
+      hacia abajo para que las montañas empiecen detrás del hero, como en Figma.
+      Al usar vw, el desplazamiento escala junto con el SVG.
+   2. Debajo, un degradado con corte duro: cielo arriba y el verde más oscuro del SVG
+      (#001706) abajo, para que el fondo continúe hasta el final de la página. El corte
+      (76vw) cae dentro de la zona opaca del SVG, así que nunca se ve. */
 body {
   margin: 0;
-  padding: 0;
-}
-
-body {
   background:
-    radial-gradient(1200px 600px at 80% -10%, rgba(56, 189, 248, 0.12), transparent),
-    radial-gradient(900px 500px at -10% 10%, rgba(129, 140, 248, 0.1), transparent),
-    var(--bg);
-  color: var(--text);
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
+    url('/assets/mountains.svg') center 13.75vw / 100% auto no-repeat,
+    linear-gradient(to bottom, #eef9ff 76vw, #001706 76vw);
 }
 
-h1,
-h2,
-h3 {
-  line-height: 1.2;
-  margin: 0 0 0.5rem;
-}
+/* BUTTONS */
 
-a {
-  color: var(--accent);
-}
-
-.section {
-  max-width: var(--maxw);
-  margin: 0 auto;
-  padding: 4rem 1.25rem;
-}
-
-.section-title {
-  font-size: 1.9rem;
-  margin-bottom: 0.4rem;
-}
-
-.section-sub {
-  color: var(--muted);
-  margin-bottom: 2.5rem;
-}
-
-/* ---------- Buttons ---------- */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.7rem 1.4rem;
-  border-radius: 0.6rem;
-  border: 1px solid transparent;
-  font-weight: 600;
-  font-size: 0.95rem;
-  cursor: pointer;
+/* button type 1, yellow filling, shadow under it
+  and animation on hover
+*/
+a{
   text-decoration: none;
-  transition: filter 0.15s ease, transform 0.1s ease;
 }
-.btn:active {
-  transform: translateY(1px);
+.btn-1, .btn-2 {
+  border: 0px;
+  color: #000020;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 20px;
+  box-shadow: 0px 0.2px 3px 0.5px rgba(0,0,0,0.5);
 }
-.btn-primary {
-  background: var(--accent);
-  color: #08111f;
-}
-.btn-primary:hover {
-  filter: brightness(1.08);
-}
-.btn-ghost {
-  background: transparent;
-  border-color: var(--border);
-  color: var(--text);
-}
-.btn-ghost:hover {
-  border-color: var(--accent);
-}
-.btn:disabled {
-  opacity: 0.55;
-  cursor: not-allowed;
+.btn-1{
+  background-color: #FFDE21;
+
 }
 
-/* ---------- Cards ---------- */
-.card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 1.4rem;
+.btn-2{
+  background-color: #F3F3FF;
 }
 
-/* ---------- Chips ---------- */
-.chip {
-  display: inline-block;
-  padding: 0.2rem 0.65rem;
-  border-radius: 999px;
-  background: rgba(56, 189, 248, 0.12);
-  color: var(--accent);
-  font-size: 0.78rem;
-  border: 1px solid rgba(56, 189, 248, 0.25);
+/* Fonts */
+.txt-title{
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 22px;
+  line-height: 140%;
 }
 
-/* ---------- Forms ---------- */
-.field {
+.txt-hero{
+  font-family: "Gabarito", sans-serif;
+  font-size: 64px;
+  font-weight: 400;
+  line-height: 120%;
+}
+.txt-h1{
+  font-family: "Gabarito", sans-serif;
+  font-size: 48px;
+  font-weight: 400;
+  line-height: 120%;
+}
+.txt-h2{
+  font-family: "Gabarito", sans-serif;
+  font-size: 38px;
+  font-weight: 400;
+  line-height: 140%;
+}
+.txt-h3{
+  font-family: "Gabarito", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 140%;
+}
+
+/* General styling */
+.containerGlass{
   display: flex;
+  width: 80%;
+  height: 90%;
+  border-radius: 40px;
+  justify-content: center;
   flex-direction: column;
-  gap: 0.4rem;
-  margin-bottom: 1.1rem;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: rgba(243, 243, 255, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); /* Safari support */
 }
-.field label {
-  font-size: 0.9rem;
-  color: var(--muted);
-}
-.field input,
-.field textarea {
-  background: var(--bg-elev);
-  border: 1px solid var(--border);
-  border-radius: 0.55rem;
-  padding: 0.7rem 0.85rem;
-  color: var(--text);
-  font: inherit;
-  font-size: 0.95rem;
-}
-.field input:focus,
-.field textarea:focus {
-  outline: none;
-  border-color: var(--accent);
-}
-/* Honeypot: hidden from humans */
-.hp {
-  position: absolute;
-  left: -9999px;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-}
-
-/* ---------- Skeleton loaders ---------- */
+/* ---------- Skeleton loaders ----------
 .skeleton {
   background: linear-gradient(90deg, var(--bg-elev) 25%, #1a2740 50%, var(--bg-elev) 75%);
   background-size: 200% 100%;
@@ -167,9 +119,9 @@ a {
   100% {
     background-position: -200% 0;
   }
-}
+} */
 
-/* ---------- Spinner ---------- */
+/* ---------- Spinner ----------
 .spinner {
   width: 1.05rem;
   height: 1.05rem;
@@ -199,4 +151,4 @@ a {
   background: rgba(248, 113, 113, 0.12);
   color: var(--danger);
   border: 1px solid rgba(248, 113, 113, 0.3);
-}
+} */

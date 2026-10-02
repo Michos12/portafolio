@@ -1,0 +1,21 @@
+<section class="nav">
+  <div class="nav-inner">
+    <a class="brand" routerLink="/" (click)="closeMenu()">
+      <img src="assets/MC logo.svg"
+      alt="" 
+      class="btn-1"
+      id="logo">
+    </a>
+
+    <button class="nav-toggle" (click)="toggleMenu()" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="nav-links" [class.open]="menuOpen()">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="closeMenu()">Home</a>
+      <a routerLink="/about" routerLinkActive="active" (click)="closeMenu()">About</a>
+      <a routerLink="/projects" routerLinkActive="active" (click)="closeMenu()">Projects</a>
+    </nav>
+    <a class="btn-1" routerLink="/contact" routerLinkActive="active" (click)="closeMenu()">Contact</a>
+  </div>
+</section>

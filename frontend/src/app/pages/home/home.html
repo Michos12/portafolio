@@ -1,21 +1,96 @@
-<section class="hero section">
-  <p class="eyebrow">Hi, I'm Michel Corozo</p>
-  <h1 class="hero-title">
-    Full Stack Developer building <span class="grad">fast, reliable</span> web apps.
-  </h1>
-  <p class="hero-lead">
-    I design and ship end-to-end products — from Angular interfaces to Python APIs and
-    cloud databases. This very portfolio runs on a decoupled architecture I built myself.
-  </p>
 
-  <div class="hero-cta">
-    <a class="btn btn-primary" routerLink="/projects">View Projects</a>
-    <a class="btn btn-ghost" routerLink="/contact">Get in touch</a>
-  </div>
+<section class="general-container">
+  
+  <section class="hero container">
+    <div class="content containerGlass">
+      <div class="hero-info-container">
+        <div class="hero-text-left">
+          <h1>Michael Corozo</h1>
+          <p class="txt-hero">Full Stack Developer</p>
+          <p class="txt-h3">I design and ship end-to-end products — from Angular interfaces to Python APIs and cloud databases.</p>
+          <div class="hero-info-buttons">
+            <a routerLink="/contact">
+              <button class="btn-1" id="btnContact">Contact</button>
+              <button class="btn-2">Contact</button>
+            </a>
+          </div>
+        </div>
+        <div class="hero-info-vector">
+          <img src="assets/home-background.svg" alt="element animation">
+        </div>
+      </div>
+      <div class="hero-info-stack">
+        <div class="titleContainer">
+          <span class="titleLine"></span>
+          <p class="txt-h2 space-title">Tech Stack</p>
 
-  <div class="hero-stack">
-    @for (tech of stack; track tech) {
-      <span class="chip">{{ tech }}</span>
-    }
-  </div>
+        </div>
+        <div class="hero-info-carrusel">
+          <div class="hero-info-carrusel-track" id="tech-stack">
+            <div class="row-stack"></div>
+            <div class="row-stack"></div>
+            <div class="row-stack"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="projects container">
+    <div class="projects containerGlass">
+      <div class="titleContainer">
+        <span class="yellow-line"></span>
+        <p class="txt-h1 space-title">Projects</p>
+      </div>
+      <div class="grid">
+        Here I will display projects
+       {{ projects() }}
+        @for (project of projects(); track project) {
+          <div class="card">
+            <div class="card-image-container">
+              <img src="{{ project.imageUrl }}" alt="">
+              <p class="card-image-description">{{ project.description }}</p>
+            </div>
+            <div class="card-info">
+              <p class="txt-2">{{ project.title }}</p>
+              <div class="card-info-stack">
+                @for (tech of project.techStack; track tech) {
+                  <span class="chip">{{ tech }}</span>
+                }
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+  <section class="about container">
+    <div class="about containerGlass">
+      <div class="titleContainer">
+        <span class="yellow-line"></span>
+        <p class="txt-h1 space-title">About Me</p>
+      </div>
+      <div class="about-info-container">
+        <div class="about-img-container">
+          <img id="about-image" 
+          src="\assets\about photo.jpg" 
+          alt="profile image">
+        </div>
+        <div class="about-info-text">
+          <p class="txt-h3">I'm Michael Corozo</p>
+          <p class="txt-title">Full Stack Developer</p>
+          <p class="txt-title">Experience building web applications using React, Node.js, and 
+  modern frameworks like Next.js. Skilled in designing and integrating RESTful APIs and 
+  working with databases such as MySQL and MongoDB. Experienced in AI data annotation 
+  and model evaluation, contributing to improving machine learning systems. Passionate about 
+  building scalable applications and continuously learning new technologies.  </p>
+          <div class="about-info-buttons">
+            <a routerLink="/about">
+              <button class="btn-1" id="btnAbout">Learn More</button>
+            </a>
+            <button class="btn-2" (click)="downloadResume()">Download Resume</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </section>

@@ -1,0 +1,25 @@
+footer {
+  border-top: 1px solid var(--border);
+  padding: 1.5rem 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: space-between;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  width: 100%;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.footer-links{
+  display: flex;
+  gap: 1rem;
+}
+
+.footer-links a {
+  color: var(--muted);
+  text-decoration: none;
+}
+.footer-links a:hover {
+  color: var(--accent);
+}

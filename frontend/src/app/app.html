@@ -1,31 +1,7 @@
-<header class="nav">
-  <div class="nav-inner">
-    <a class="brand" routerLink="/" (click)="closeMenu()">
-      <span class="brand-mark">MC</span>
-      <span class="brand-text">Michel Corozo</span>
-    </a>
+<link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400..900&family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
 
-    <button class="nav-toggle" (click)="toggleMenu()" aria-label="Toggle menu">
-      <span></span><span></span><span></span>
-    </button>
-
-    <nav class="nav-links" [class.open]="menuOpen()">
-      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="closeMenu()">Home</a>
-      <a routerLink="/about" routerLinkActive="active" (click)="closeMenu()">About</a>
-      <a routerLink="/projects" routerLinkActive="active" (click)="closeMenu()">Projects</a>
-      <a class="nav-cta" routerLink="/contact" routerLinkActive="active" (click)="closeMenu()">Contact</a>
-    </nav>
-  </div>
-</header>
-
+<app-nav></app-nav>
 <main class="main">
-  <router-outlet />
+  <router-outlet></router-outlet>
+  <app-footer></app-footer>
 </main>
-
-<footer class="footer">
-  <p>© {{ year }} Michel Corozo · Full Stack Developer</p>
-  <p class="footer-links">
-    <a href="https://github.com/Michos12" target="_blank" rel="noopener">GitHub</a>
-    <a href="https://www.linkedin.com/in/michael-veliz-3b9893300/" target="_blank" rel="noopener">LinkedIn</a>
-  </p>
-</footer>
