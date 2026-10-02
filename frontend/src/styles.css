@@ -15,6 +15,17 @@
   font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 } */
 
+/* ---------- Design tokens (mirrors the Figma variables) ---------- */
+:root {
+  --yellow: #ffde21;
+  --blue: #000020;
+  --grey: #343837;
+  --light-grey: #d9d9d9;
+  --white-grey: #f3f3ff;
+  --y-100: #ffeb76;
+  --green: #002108;
+}
+
 /* ---------- Fondo de la página ----------
    margin: 0 quita los 8px que el navegador aplica al body por defecto.
 
@@ -57,6 +68,50 @@ a{
 
 .btn-2{
   background-color: #F3F3FF;
+}
+
+/* Large pill button from the Figma "button" component. Combine with .btn-1 / .btn-2. */
+.btn-lg {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 150px;
+  padding: 9px 12px;
+  border-radius: 20px;
+  color: var(--blue);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.6;
+  cursor: pointer;
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.btn-lg:hover:not(:disabled) {
+  transform: translateY(-2px);
+  filter: brightness(1.04);
+}
+
+.btn-lg:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+}
+
+.btn-lg:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.btn-1.btn-lg {
+  box-shadow: 0 4px 1px rgba(0, 0, 0, 0.25);
+}
+
+.btn-2.btn-lg {
+  padding-block: 8px;
+  border: 1px solid var(--grey);
+  background-color: var(--white-grey);
+  box-shadow: none;
 }
 
 /* Fonts */
@@ -104,6 +159,29 @@ a{
   background-color: rgba(243, 243, 255, 0.6);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px); /* Safari support */
+}
+
+/* Full-width page section card from the designs. Combine with .containerGlass. */
+.section-card {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1280px;
+  height: auto;
+  padding: 40px 80px;
+  gap: 40px;
+  align-items: stretch;
+}
+
+@media (max-width: 1100px) {
+  .section-card {
+    padding: 40px;
+  }
+}
+
+@media (max-width: 860px) {
+  .section-card {
+    padding: 32px 20px;
+  }
 }
 /* ---------- Skeleton loaders ----------
 .skeleton {

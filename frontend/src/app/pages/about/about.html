@@ -1,36 +1,86 @@
-<section class="section">
-  <h1 class="section-title">About me</h1>
-  <p class="section-sub">Full Stack Developer · Angular + Python</p>
+<div class="about-page">
+  <section class="about-card containerGlass section-card">
+    <!-- Intro: title, photo, bio and calls to action -->
+    <div class="about-top">
+      <app-section-title text="About Me" size="hero" [level]="1" />
 
-  <div class="about-grid">
-    <div class="about-bio">
-      <p>
-        I'm a Full Stack Developer who enjoys taking products from idea to production:
-        clean, accessible interfaces on the front, and well-structured, secure APIs on
-        the back.
-      </p>
-      <p>
-        I care about the details that make software trustworthy — input validation,
-        authentication, rate limiting, sensible error handling and fast load times.
-        I build with a decoupled mindset so each layer can scale and deploy independently.
-      </p>
-      <p>
-        This portfolio is a working example: an Angular SPA on the front, a FastAPI
-        service on the back, and a PostgreSQL database — each hosted on its own platform.
-      </p>
-    </div>
+      <div class="about-content">
+        <div class="photo">
+          <img src="assets/about%20photo.jpg" alt="Portrait of Michel Corozo" width="400" height="400" />
+        </div>
 
-    <div class="about-skills">
-      @for (group of skills; track group.label) {
-        <div class="card skill-card">
-          <h3>{{ group.label }}</h3>
-          <div class="skill-chips">
-            @for (item of group.items; track item) {
-              <span class="chip">{{ item }}</span>
-            }
+        <div class="about-text">
+          <div class="about-heading">
+            <p class="txt-h1 name">Michael Corozo</p>
+            <p class="txt-h3 role">Full Stack Developer</p>
+          </div>
+
+          <p class="txt-title bio">
+            I take products from idea to production — from Angular and React interfaces to
+            Python and Node.js APIs backed by SQL databases. I care about the details that make
+            software trustworthy: clean architecture, secure authentication, and fast,
+            accessible experiences.
+          </p>
+
+          <div class="about-actions">
+            <a class="btn-1 btn-lg" routerLink="/about" fragment="contact">CONTACT</a>
+            <a class="btn-2 btn-lg" href="assets/CV%20dev.pdf" download="CV dev.pdf">Resume</a>
           </div>
         </div>
-      }
+      </div>
     </div>
-  </div>
-</section>
+
+    <!-- Tech skills grouped by area -->
+    <div class="tech-skills">
+      <app-section-title text="Tech Skills" />
+
+      <div class="skill-cards">
+        @for (group of skillGroups; track group.title) {
+          <article class="skill-card">
+            <h3 class="txt-h3">{{ group.title }}</h3>
+            <ul class="skill-chips">
+              @for (skill of group.skills; track skill.name) {
+                <li class="chip">
+                  @if (skill.icon) {
+                    <span class="chip-icon">
+                      <img [src]="skill.icon" alt="" [style.width.px]="skill.iconWidth ?? 24" />
+                    </span>
+                  }
+                  {{ skill.name }}
+                </li>
+              }
+            </ul>
+          </article>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Professional experience timeline -->
+  <section class="experience-card containerGlass section-card">
+    <div class="experience-header">
+      <app-section-title text="Professional Experience" />
+      <p class="txt-title experience-intro">
+        A chronological view of my professional journey and the impact I've made.
+      </p>
+    </div>
+
+    <ol class="timeline">
+      @for (job of experiences; track job.company) {
+        <li class="timeline-item">
+          <span class="year-circle txt-h3">{{ job.year }}</span>
+          <article class="experience-block">
+            <div class="experience-title">
+              <h3 class="txt-h3">{{ job.position }}</h3>
+              <p class="company">{{ job.company }}</p>
+            </div>
+            <p class="summary">{{ job.summary }}</p>
+            <p class="dates">{{ job.dates }}</p>
+          </article>
+        </li>
+      }
+    </ol>
+  </section>
+
+  <app-contact-section />
+</div>

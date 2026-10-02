@@ -1,19 +1,17 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
-interface SkillGroup {
-  label: string;
-  items: string[];
-}
+import { ContactSectionComponent } from '../../components/contact-section/contact-section';
+import { SectionTitleComponent } from '../../components/section-title/section-title';
+import { EXPERIENCES, SKILL_GROUPS } from './about.data';
 
 @Component({
   selector: 'app-about',
+  imports: [RouterLink, SectionTitleComponent, ContactSectionComponent],
   templateUrl: './about.html',
   styleUrl: './about.css',
 })
 export class About {
-  protected readonly skills: SkillGroup[] = [
-    { label: 'Frontend', items: ['Angular', 'TypeScript', 'RxJS', 'Signals', 'HTML/CSS'] },
-    { label: 'Backend', items: ['Python', 'FastAPI', 'REST APIs', 'JWT Auth', 'Pydantic'] },
-    { label: 'Data & Cloud', items: ['PostgreSQL', 'Supabase', 'Vercel', 'Render', 'Git/GitHub'] },
-  ];
+  protected readonly skillGroups = SKILL_GROUPS;
+  protected readonly experiences = EXPERIENCES;
 }
