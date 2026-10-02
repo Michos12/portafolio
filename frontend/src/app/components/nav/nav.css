@@ -3,97 +3,184 @@
   position: sticky;
   top: 0;
   z-index: 50;
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(3.5px);
+  -webkit-backdrop-filter: blur(3.5px); /* Safari support */
   background-color: rgba(238, 249, 255, 0.8);
-  border-bottom: 1px solid var(--border);
-}
-#logo{
-  background-color: #FFDE21;
 }
 
 .nav-inner {
-  max-width: var(--maxw);
-  padding: 0.85rem 1.25rem;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 20px;
+  padding: 22px 80px 16px;
 }
 
+/* ---------- Logo ---------- */
+/* The SVG is 63px wide to include its drop shadow; the visible circle is 55px. */
 .brand {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-weight: 700;
-  color: var(--text);
-  text-decoration: none;
+  position: relative;
+  flex-shrink: 0;
+  display: block;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
 }
 
+.brand img {
+  position: absolute;
+  top: 0;
+  left: -4px;
+  display: block;
+  transition: transform 0.2s ease;
+}
+
+.brand:hover img {
+  transform: rotate(-8deg);
+}
+
+.brand:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 4px;
+}
+
+/* ---------- Menu items ---------- */
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 80px;
 }
 
 .nav-links a {
-  color: var(--muted);
-  text-decoration: none;
-  font-size: 0.95rem;
-  transition: color 0.15s ease;
+  position: relative;
+  isolation: isolate;
+  box-sizing: border-box;
+  min-width: 150px;
+  padding: 8px;
+  color: var(--blue);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.4;
+  text-align: center;
 }
 
-.nav-links a:hover,
-.nav-links a.active {
-  color: var(--text);
+/* Yellow highlight bar from the design's "Hover" state, drawn behind the label. */
+.nav-links a::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: 16px;
+  left: 50%;
+  width: 136px;
+  height: 24px;
+  background-color: var(--yellow);
+  transform: translateX(-50%) scaleX(0);
+  transform-origin: left;
+  transition: transform 0.2s ease;
 }
 
-.nav-cta {
-  padding: 0.45rem 0.95rem;
-  border-radius: 0.55rem;
-  background: var(--accent);
-  color: #08111f !important;
-  font-weight: 600;
+.nav-links a:hover::before,
+.nav-links a:focus-visible::before {
+  transform: translateX(-50%) scaleX(1);
 }
 
-.nav-cta:hover {
-  filter: brightness(1.08);
+.nav-links a:focus-visible {
+  outline: none;
 }
 
+/* ---------- Contact button (matches the design's large pill button) ---------- */
+.nav-inner > .btn-1 {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 150px;
+  padding: 9px 12px;
+  box-shadow: 0 4px 1px rgba(0, 0, 0, 0.25);
+  color: var(--blue);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.6;
+  text-transform: uppercase;
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.nav-inner > .btn-1:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.04);
+}
+
+.nav-inner > .btn-1:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+}
+
+/* ---------- Mobile toggle ---------- */
 .nav-toggle {
   display: none;
   flex-direction: column;
   gap: 5px;
-  background: none;
-  border: 0;
-  cursor: pointer;
+  margin-left: auto;
   padding: 0.4rem;
+  border: 0;
+  background: none;
+  cursor: pointer;
 }
 
 .nav-toggle span {
   width: 22px;
   height: 2px;
-  background: #000020;
   border-radius: 2px;
+  background: var(--blue);
 }
 
-/* ---------- Mobile ---------- */
-@media (max-width: 720px) {
+@media (max-width: 1100px) {
+  .nav-inner {
+    padding-inline: 40px;
+  }
+
+  .nav-links {
+    gap: 24px;
+  }
+}
+
+@media (max-width: 860px) {
+  .nav-inner {
+    padding: 16px 20px;
+  }
+
   .nav-toggle {
     display: flex;
   }
+
+  .nav-inner > .btn-1 {
+    min-width: 0;
+    padding: 6px 14px;
+    font-size: 15px;
+  }
+
   .nav-links {
     position: absolute;
     top: 100%;
     left: 0;
     right: 0;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
-    padding: 1.25rem;
-    background-color: rgba(238, 249, 255, 0.95);
-    border-bottom: 1px solid var(--border);
     display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+    padding: 12px 20px 20px;
+    background-color: rgba(238, 249, 255, 0.97);
+    border-bottom: 1px solid var(--light-grey);
   }
+
   .nav-links.open {
     display: flex;
+  }
+
+  .nav-links a::before {
+    width: calc(100% - 16px);
   }
 }

@@ -1,8 +1,42 @@
-<section class="footer">
-  <p><span id="favicon"></span> Michel Corozo</p>
-  <p class="footer-links">
-    <a href="https://github.com/Michos12" target="_blank" rel="noopener">GitHub</a>
-    <a href="https://www.linkedin.com/in/michael-veliz-3b9893300/" target="_blank" rel="noopener">LinkedIn</a>
-    <a href="mailto:corozomichel@gmail.com">corozomichel@gmail.com</a>
-  </p>
-</section>
+<footer class="footer">
+  <div class="footer-top">
+    <div class="footer-content">
+      <!-- Logo + name lettering -->
+      <div class="footer-brand">
+        <span class="footer-logo">
+          <img src="assets/logo.svg" alt="" width="63" height="63" />
+        </span>
+        <span class="footer-name" role="img" aria-label="Michel Corozo">
+          <img src="assets/brand/michel-light.svg" alt="" />
+          <img src="assets/brand/corozo-light.svg" alt="" />
+        </span>
+      </div>
+
+      <ul class="footer-social">
+        @for (social of socials; track social.href) {
+          <li>
+            <a
+              [href]="social.href"
+              [attr.target]="social.external ? '_blank' : null"
+              [attr.rel]="social.external ? 'noopener' : null"
+            >
+              <img [src]="social.icon" alt="" width="32" height="32" />
+              {{ social.label }}
+            </a>
+          </li>
+        }
+      </ul>
+    </div>
+
+    <button class="back-to-top" type="button" (click)="scrollToTop()">
+      <span class="back-to-top-icon">
+        <img src="assets/arrow-up.svg" alt="" width="24" height="24" />
+      </span>
+      Back to top
+    </button>
+  </div>
+
+  <span class="footer-line" aria-hidden="true"></span>
+
+  <p class="copyright">© {{ year }} Michel Corozo. All rights reserved.</p>
+</footer>

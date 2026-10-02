@@ -1,0 +1,38 @@
+:host {
+  display: block;
+}
+
+.section-title {
+  display: flex;
+  align-items: stretch;
+  gap: 20px;
+}
+
+/* Yellow accent bar: stretches to the height of the heading text. */
+.line {
+  flex-shrink: 0;
+  width: 10px;
+  border-radius: 20px;
+  background-color: var(--yellow);
+}
+
+h1,
+h2 {
+  margin: 0;
+  color: var(--blue);
+}
+
+/* The global type scale is desktop-sized; shrink it on narrow screens. */
+@media (max-width: 860px) {
+  .txt-hero {
+    font-size: 44px;
+  }
+
+  .txt-h1 {
+    font-size: 36px;
+  }
+
+  .txt-h2 {
+    font-size: 30px;
+  }
+}

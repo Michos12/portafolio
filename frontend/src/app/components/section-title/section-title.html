@@ -1,0 +1,8 @@
+<div class="section-title">
+  <span class="line" aria-hidden="true"></span>
+  @if (level() === 1) {
+    <h1 [class]="textClass()">{{ text() }}</h1>
+  } @else {
+    <h2 [class]="textClass()">{{ text() }}</h2>
+  }
+</div>

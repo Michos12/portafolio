@@ -1,93 +1,112 @@
-
 <section class="general-container">
-  
+
   <section class="hero container">
-    <div class="content containerGlass">
+    <div class="content containerGlass section-card hero-card">
       <div class="hero-info-container">
         <div class="hero-text-left">
           <h1>Michael Corozo</h1>
           <p class="txt-hero">Full Stack Developer</p>
           <p class="txt-h3">I design and ship end-to-end products — from Angular interfaces to Python APIs and cloud databases.</p>
           <div class="hero-info-buttons">
-            <a routerLink="/contact">
-              <button class="btn-1" id="btnContact">Contact</button>
-              <button class="btn-2">Contact</button>
-            </a>
+            <a class="btn-1 btn-lg" routerLink="/about" fragment="contact">CONTACT</a>
+            <a class="btn-2 btn-lg" routerLink="/projects">View Projects</a>
           </div>
         </div>
         <div class="hero-info-vector">
           <img src="assets/home-background.svg" alt="element animation">
         </div>
       </div>
-      <div class="hero-info-stack">
-        <div class="titleContainer">
-          <span class="titleLine"></span>
-          <p class="txt-h2 space-title">Tech Stack</p>
 
-        </div>
-        <div class="hero-info-carrusel">
-          <div class="hero-info-carrusel-track" id="tech-stack">
-            <div class="row-stack"></div>
-            <div class="row-stack"></div>
-            <div class="row-stack"></div>
-          </div>
+      <!-- Tech stack: three infinite rows that alternate direction -->
+      <div class="hero-info-stack">
+        <app-section-title text="Tech Stack" size="h2" />
+
+        <!-- Rows follow the design: right, left, right -->
+        <div class="carousel">
+          @for (row of stackRows; track $index) {
+            <div class="carousel-row" [class.reverse]="$even">
+              <div class="carousel-track">
+                <!-- The list is rendered twice so the loop has no visible seam -->
+                @for (copy of [0, 1]; track copy) {
+                  <ul class="carousel-group" [attr.aria-hidden]="copy === 1 ? 'true' : null">
+                    @for (tech of row; track tech.name) {
+                      <li class="stack-chip">
+                        @if (tech.icon) {
+                          <span class="stack-icon">
+                            <img [src]="tech.icon" alt="" [style.width.px]="tech.iconWidth ?? 38" />
+                          </span>
+                        }
+                        {{ tech.name }}
+                      </li>
+                    }
+                  </ul>
+                }
+              </div>
+            </div>
+          }
         </div>
       </div>
     </div>
   </section>
+
   <section class="projects container">
-    <div class="projects containerGlass">
-      <div class="titleContainer">
-        <span class="yellow-line"></span>
-        <p class="txt-h1 space-title">Projects</p>
-      </div>
-      <div class="grid">
-        Here I will display projects
-       {{ projects() }}
-        @for (project of projects(); track project) {
-          <div class="card">
-            <div class="card-image-container">
-              <img src="{{ project.imageUrl }}" alt="">
-              <p class="card-image-description">{{ project.description }}</p>
+    <div class="projects containerGlass section-card projects-card">
+      <app-section-title text="Projects" />
+
+      <div class="project-grid">
+        @for (project of projects; track project.id) {
+          <article class="project-card">
+            <div class="project-image">
+              <img
+                [src]="project.imageUrl ?? fallbackImage"
+                [alt]="'Preview of ' + project.title"
+                width="600"
+                height="450"
+                loading="lazy"
+              />
+              <p class="project-description">{{ project.description }}</p>
             </div>
-            <div class="card-info">
-              <p class="txt-2">{{ project.title }}</p>
-              <div class="card-info-stack">
-                @for (tech of project.techStack; track tech) {
-                  <span class="chip">{{ tech }}</span>
+
+            <div class="project-info">
+              <h3 class="project-title">
+                @if (project.liveUrl ?? project.repoUrl; as url) {
+                  <a [href]="url" target="_blank" rel="noopener">{{ project.title }}</a>
+                } @else {
+                  {{ project.title }}
                 }
-              </div>
+              </h3>
+              <ul class="project-badges">
+                @for (tech of project.techStack; track tech; let i = $index) {
+                  <li class="badge" [attr.data-tone]="i % 3">{{ tech }}</li>
+                }
+              </ul>
             </div>
-          </div>
+          </article>
         }
       </div>
     </div>
   </section>
+
   <section class="about container">
-    <div class="about containerGlass">
-      <div class="titleContainer">
-        <span class="yellow-line"></span>
-        <p class="txt-h1 space-title">About Me</p>
-      </div>
+    <div class="about containerGlass section-card">
+      <app-section-title text="My experience" size="h2" />
       <div class="about-info-container">
         <div class="about-img-container">
-          <img id="about-image" 
-          src="\assets\about photo.jpg" 
+          <img id="about-image"
+          src="assets/about%20photo.jpg"
           alt="profile image">
         </div>
         <div class="about-info-text">
           <p class="txt-h3">I'm Michael Corozo</p>
           <p class="txt-title">Full Stack Developer</p>
-          <p class="txt-title">Experience building web applications using React, Node.js, and 
-  modern frameworks like Next.js. Skilled in designing and integrating RESTful APIs and 
-  working with databases such as MySQL and MongoDB. Experienced in AI data annotation 
-  and model evaluation, contributing to improving machine learning systems. Passionate about 
+          <p class="txt-title">Experience building web applications using React, Node.js, and
+  modern frameworks like Next.js. Skilled in designing and integrating RESTful APIs and
+  working with databases such as MySQL and MongoDB. Experienced in AI data annotation
+  and model evaluation, contributing to improving machine learning systems. Passionate about
   building scalable applications and continuously learning new technologies.  </p>
           <div class="about-info-buttons">
-            <a routerLink="/about">
-              <button class="btn-1" id="btnAbout">Learn More</button>
-            </a>
-            <button class="btn-2" (click)="downloadResume()">Download Resume</button>
+            <a class="btn-1 btn-lg" routerLink="/about">LEARN MORE</a>
+            <a class="btn-2 btn-lg" href="assets/CV%20dev.pdf" download="CV dev.pdf">Resume</a>
           </div>
         </div>
       </div>
