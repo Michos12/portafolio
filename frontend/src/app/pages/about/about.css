@@ -1,35 +1,355 @@
-.about-grid {
-  display: grid;
-  grid-template-columns: 1.3fr 1fr;
-  gap: 2.5rem;
-  align-items: start;
-}
-
-.about-bio p {
-  color: var(--muted);
-  margin-bottom: 1.1rem;
-}
-
-.about-skills {
+/* ---------- Page layout ---------- */
+.about-page {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  align-items: center;
+  gap: 80px;
+}
+
+/* ---------- About card ---------- */
+.about-card {
+  gap: 80px;
+}
+
+.about-top {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  padding-bottom: 80px;
+  border-bottom: 1px solid var(--light-grey);
+}
+
+.about-content {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+
+/* Circular photo slot; the light fill shows while the image loads. */
+.photo {
+  flex-shrink: 0;
+  width: 400px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: var(--white-grey);
+}
+
+.photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about-text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 40px;
+}
+
+.about-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.about-heading p,
+.bio {
+  margin: 0;
+}
+
+.name {
+  color: var(--blue);
+}
+
+.role,
+.bio {
+  color: var(--grey);
+}
+
+.bio {
+  font-weight: 500;
+}
+
+.about-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 40px;
+}
+
+/* ---------- Tech skills ---------- */
+/* The design leaves 60px between the divider and this title, and 60px below the cards. */
+.tech-skills {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-top: -20px;
+  padding-bottom: 20px;
+}
+
+.skill-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.skill-card {
+  box-sizing: border-box;
+  min-width: 325px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 25px;
+  border: 1px solid var(--light-grey);
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(3.5px);
+  -webkit-backdrop-filter: blur(3.5px); /* Safari support */
 }
 
 .skill-card h3 {
-  font-size: 1.05rem;
-  margin-bottom: 0.8rem;
+  margin: 0;
+  color: #000;
+  text-align: center;
 }
 
 .skill-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  justify-items: start;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-@media (max-width: 760px) {
-  .about-grid {
-    grid-template-columns: 1fr;
-    gap: 1.75rem;
+.chip {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 36px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  background-color: var(--light-grey);
+  color: var(--blue);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  white-space: nowrap;
+}
+
+.chip-icon {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+}
+
+.chip-icon img {
+  display: block;
+  height: auto;
+}
+
+/* ---------- Experience timeline ---------- */
+.experience-header {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.experience-intro {
+  margin: 0;
+  padding-left: 40px;
+  color: var(--grey);
+  font-weight: 500;
+}
+
+/* The vertical rail is drawn once behind the year circles; items sit on top of it. */
+.timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 58px;
+  margin: 0;
+  padding: 100px 0 56px;
+  list-style: none;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 67.5px;
+  width: 5px;
+  background-color: var(--grey);
+}
+
+.timeline-item {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  align-items: start;
+}
+
+.year-circle {
+  position: relative;
+  box-sizing: border-box;
+  display: grid;
+  place-items: center;
+  justify-self: center;
+  width: 75px;
+  height: 75px;
+  margin-top: 2px;
+  padding: 4px;
+  border-radius: 50%;
+  background-color: var(--y-100);
+  color: var(--green);
+  box-shadow: 0 2px 1px rgba(0, 0, 0, 0.25);
+}
+
+.experience-block {
+  box-sizing: border-box;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  padding: 22px 20px;
+  border-radius: 20px;
+  background-color: var(--light-grey);
+  box-shadow: 0 2px 1px rgba(0, 0, 0, 0.25);
+}
+
+.experience-title h3,
+.company,
+.summary,
+.dates {
+  margin: 0;
+}
+
+.experience-title h3 {
+  color: var(--blue);
+}
+
+.company,
+.summary {
+  color: var(--grey);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.dates {
+  color: var(--blue);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1100px) {
+  .photo {
+    width: 320px;
+  }
+}
+
+@media (max-width: 860px) {
+  .about-page {
+    gap: 40px;
+  }
+
+  .about-card {
+    gap: 48px;
+  }
+
+  .about-top {
+    gap: 40px;
+    padding-bottom: 48px;
+  }
+
+  .about-content {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .photo {
+    width: min(280px, 100%);
+  }
+
+  .about-text {
+    align-items: center;
+    text-align: center;
+    gap: 28px;
+  }
+
+  .about-actions {
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .name {
+    font-size: 36px;
+  }
+
+  .role {
+    font-size: 22px;
+  }
+
+  .bio,
+  .experience-intro {
+    font-size: 18px;
+  }
+
+  .experience-intro {
+    padding-left: 0;
+  }
+
+  /* Narrower rail column on small screens. */
+  .timeline {
+    gap: 32px;
+    padding: 40px 0 32px;
+  }
+
+  .timeline::before {
+    left: 27.5px;
+  }
+
+  .timeline-item {
+    grid-template-columns: 60px 1fr;
+  }
+
+  .year-circle {
+    width: 54px;
+    height: 54px;
+    font-size: 18px;
+  }
+
+  .experience-block {
+    min-height: 0;
+    padding: 18px 16px;
+  }
+
+  .experience-title h3 {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 420px) {
+  .skill-card {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .skill-chips {
+    gap: 12px;
   }
 }
