@@ -1,13 +1,14 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
+import { SectionTitleComponent } from '../../components/section-title/section-title';
 import { AuthService } from '../../services/auth.service';
 import { ProjectService } from '../../services/project.service';
 import { ProjectInput } from '../../models/models';
 
 @Component({
   selector: 'app-admin',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, SectionTitleComponent],
   templateUrl: './admin.html',
   styleUrl: './admin.css',
 })
@@ -18,6 +19,7 @@ export class Admin implements OnInit {
 
   protected readonly isLoggedIn = this.auth.isLoggedIn;
   protected readonly projects = this.projectService.projects;
+  protected readonly loading = this.projectService.loading;
 
   protected readonly loginError = signal<string | null>(null);
   protected readonly formError = signal<string | null>(null);
@@ -126,6 +128,10 @@ export class Admin implements OnInit {
   }
 
   remove(id: number): void {
+    // Deleting is permanent in the database, so ask before doing it.
+    const project = this.projects().find((p) => p.id === id);
+    if (!confirm(`Delete "${project?.title ?? 'this project'}"? This cannot be undone.`)) return;
+
     this.projectService.remove(id).subscribe({
       next: () => this.projectService.load(),
       error: () => this.formError.set('Could not delete the project.'),

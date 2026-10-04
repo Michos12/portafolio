@@ -1,85 +1,217 @@
+.admin-page {
+  display: flex;
+  justify-content: center;
+}
+
+.admin-intro {
+  margin: 0;
+  color: var(--grey);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 18px;
+}
+
+/* White glass panel, same look as the contact form. */
+.panel {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 28px;
+  border-radius: 24px;
+  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(3.5px);
+  -webkit-backdrop-filter: blur(3.5px); /* Safari support */
+}
+
+.panel-title {
+  margin: 0;
+  color: var(--blue);
+}
+
 .login-form {
+  width: 100%;
   max-width: 420px;
 }
 
-.admin-bar {
+.login-form .btn-lg {
+  align-self: flex-start;
+}
+
+/* ---------- Fields ---------- */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.field label,
+.check {
+  color: var(--blue);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.field input,
+.field textarea {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid rgba(0, 0, 32, 0.14);
+  border-radius: 14px;
+  background-color: rgba(255, 255, 255, 0.72);
+  color: var(--blue);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 16px;
+}
+
+.field textarea {
+  resize: vertical;
+}
+
+.field input:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(255, 222, 33, 0.55);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 24px;
+}
+
+.check {
   display: flex;
   align-items: center;
+  gap: 8px;
+  padding-bottom: 12px;
+}
+
+.order-field input {
+  width: 110px;
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+/* ---------- Layout ---------- */
+.admin-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
   justify-content: space-between;
-  margin-bottom: 1.5rem;
+  gap: 16px;
 }
 
 .admin-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
+  gap: 24px;
   align-items: start;
-}
-
-.row {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-}
-.check {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: var(--muted);
-  font-size: 0.9rem;
-}
-.order-field {
-  margin-bottom: 0;
-}
-.order-field input {
-  width: 90px;
-}
-
-.form-actions {
-  display: flex;
-  gap: 0.75rem;
-  margin-top: 0.5rem;
 }
 
 .admin-list {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .list-item {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
+  flex-direction: row;
   align-items: flex-start;
+  justify-content: space-between;
 }
+
+.list-text {
+  min-width: 0;
+}
+
+.list-title,
+.list-desc {
+  margin: 0;
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.list-title {
+  color: var(--blue);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.list-desc {
+  margin-top: 6px;
+  color: var(--grey);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.featured {
+  margin-left: 8px;
+  padding: 2px 8px;
+  border-radius: 20px;
+  background-color: var(--green);
+  color: var(--white-grey);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  font-weight: 400;
+}
+
 .list-actions {
   display: flex;
-  gap: 0.5rem;
   flex-shrink: 0;
+  gap: 8px;
 }
+
+/* Compact variant of the pill button for list rows. */
 .btn-sm {
-  padding: 0.4rem 0.75rem;
-  font-size: 0.85rem;
+  min-width: 0;
+  padding: 4px 14px;
+  font-size: 14px;
 }
+
 .danger {
-  color: var(--danger);
+  border-color: #b3261e;
+  color: #b3261e;
 }
-.danger:hover {
-  border-color: var(--danger);
-}
-.project-desc {
-  color: var(--muted);
-  font-size: 0.9rem;
-  margin: 0.35rem 0 0;
-}
+
 .empty {
-  color: var(--muted);
+  color: var(--grey);
+  font-family: 'IBM Plex Sans', sans-serif;
   text-align: center;
 }
 
-@media (max-width: 800px) {
+.status {
+  margin: 0;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 14px;
+}
+
+.status-error {
+  color: #b3261e;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
   .admin-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .panel {
+    padding: 20px 16px;
+  }
+
+  .list-item {
+    flex-direction: column;
   }
 }
