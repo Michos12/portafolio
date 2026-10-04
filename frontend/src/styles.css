@@ -186,7 +186,7 @@ a{
     padding: 32px 20px;
   }
 }
-/* ---------- Skeleton loaders ----------
+/* ---------- Skeleton loaders ---------- */
 .skeleton {
   background: linear-gradient(90deg, var(--bg-elev) 25%, #1a2740 50%, var(--bg-elev) 75%);
   background-size: 200% 100%;
@@ -200,9 +200,9 @@ a{
   100% {
     background-position: -200% 0;
   }
-} */
+}
 
-/* ---------- Spinner ----------
+/* ---------- Spinner ---------- */
 .spinner {
   width: 1.05rem;
   height: 1.05rem;
@@ -232,4 +232,4 @@ a{
   background: rgba(248, 113, 113, 0.12);
   color: var(--danger);
   border: 1px solid rgba(248, 113, 113, 0.3);
-} */
+}

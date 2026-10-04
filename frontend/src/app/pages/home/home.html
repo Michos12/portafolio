@@ -9,7 +9,7 @@
           <p class="txt-h3">I design and ship end-to-end products — from Angular interfaces to Python APIs and cloud databases.</p>
           <div class="hero-info-buttons">
             <a class="btn-1 btn-lg" routerLink="/about" fragment="contact">CONTACT</a>
-            <a class="btn-2 btn-lg" routerLink="/projects">View Projects</a>
+            <a class="btn-2 btn-lg" href="assets/CV%20dev.pdf" download="CV dev.pdf">Resume</a>
           </div>
         </div>
         <div class="hero-info-vector">
@@ -54,34 +54,49 @@
       <app-section-title text="Projects" />
 
       <div class="project-grid">
-        @for (project of projects; track project.id) {
-          <article class="project-card">
-            <div class="project-image">
-              <img
-                [src]="project.imageUrl ?? fallbackImage"
-                [alt]="'Preview of ' + project.title"
-                width="600"
-                height="450"
-                loading="lazy"
-              />
-              <p class="project-description">{{ project.description }}</p>
-            </div>
+         @if (loading()) {
+          <div class="grid">
+            @for (s of skeletons; track s) {
+              <div class="card project-card">
+                <div class="skeleton" style="height: 1.3rem; width: 60%; margin-bottom: 1rem;"></div>
+                <div class="skeleton" style="height: 0.9rem; width: 100%; margin-bottom: 0.5rem;"></div>
+                <div class="skeleton" style="height: 0.9rem; width: 80%; margin-bottom: 1.2rem;"></div>
+                <div class="skeleton" style="height: 1.4rem; width: 50%;"></div>
+              </div>
+            }
+          </div>
+        } @else if (error()) {
+          <div class="alert alert-error">{{ error() }}</div>
+        } @else {
+          @for (project of projects(); track project.id) {
+            <article class="project-card">
+              <div class="project-image">
+                <img
+                  [src]="project.imageUrl ?? fallbackImage"
+                  [alt]="'Preview of ' + project.title"
+                  width="600"
+                  height="450"
+                  loading="lazy"
+                />
+                <p class="project-description">{{ project.description }}</p>
+              </div>
+              <div class="project-info">
+                <h3 class="project-title">
+                  @if (project.liveUrl ?? project.repoUrl; as url) {
+                    <a [href]="url" target="_blank" rel="noopener">{{ project.title }}</a>
+                  } @else {
+                    {{ project.title }}
+                  }
+                </h3>
+                <ul class="project-badges">
+                  @for (tech of project.techStack; track tech; let i = $index) {
+                    <li class="badge" [attr.data-tone]="i % 3">{{ tech }}</li>
+                  }
+                </ul>
+              </div>
+            </article>
+          }
 
-            <div class="project-info">
-              <h3 class="project-title">
-                @if (project.liveUrl ?? project.repoUrl; as url) {
-                  <a [href]="url" target="_blank" rel="noopener">{{ project.title }}</a>
-                } @else {
-                  {{ project.title }}
-                }
-              </h3>
-              <ul class="project-badges">
-                @for (tech of project.techStack; track tech; let i = $index) {
-                  <li class="badge" [attr.data-tone]="i % 3">{{ tech }}</li>
-                }
-              </ul>
-            </div>
-          </article>
         }
       </div>
     </div>

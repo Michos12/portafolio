@@ -15,7 +15,19 @@ export class ProjectService {
   readonly projects = signal<Project[]>([]);
   readonly loading = signal(false);
   readonly error = signal<string | null>(null);
-
+  
+  /**
+  Load all projects from the backend. This is called once on app startup, and the
+  Projects page can then read from the `projects` signal. The `loading` and `error`
+  signals are also set accordingly.
+  @example
+  '''ts
+  projectService.load();
+  projectService.projects(); // returns the loaded projects
+  projectService.loading(); // returns true while loading, false after
+  projectService.error(); // returns null if no error, or an error message
+  '''
+  */
   load(): void {
     this.loading.set(true);
     this.error.set(null);
@@ -24,7 +36,7 @@ export class ProjectService {
         this.projects.set(data);
         this.loading.set(false);
       },
-      error: () => {
+      error: (err) => {
         this.error.set('Could not load projects. Please try again later.');
         this.loading.set(false);
       },

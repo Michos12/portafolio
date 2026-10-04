@@ -71,10 +71,11 @@
   content: '';
   position: absolute;
   z-index: -1;
-  top: 16px;
+  top: 10px;
   left: 50%;
   width: 136px;
   height: 24px;
+  padding: 4px;
   background-color: var(--yellow);
   transform: translateX(-50%) scaleX(0);
   transform-origin: left;

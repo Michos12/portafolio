@@ -27,10 +27,14 @@ export const SKILL_GROUPS: SkillGroup[] = [
     title: 'Frontend',
     skills: [
       { name: 'Angular', icon: 'assets/icons/angular.png' },
-      { name: 'TypeScript', icon: 'assets/icons/typescript.png', iconWidth: 22 },
-      { name: 'React' },
-      { name: 'JavaScript' },
-      { name: 'HTML/CSS' },
+      { name: 'TypeScript', icon: 'assets/icons/typescript.png'},
+      { name: 'React', icon: 'assets/icons/react.png' },
+      { name: 'Next.js', icon: 'assets/icons/nextjs.png' },
+      { name: 'JavaScript', icon: 'assets/icons/javascript.png' },
+      { name: 'Tailwind CSS', icon: 'assets/icons/tailwind.png' },
+      { name: 'Figma', icon: 'assets/icons/figma.png', iconWidth: 18 },
+      { name: 'Jira', icon: 'assets/icons/jira.png' },
+      { name: 'Bitbucket', icon: 'assets/icons/bitbucket.png' }
     ],
   },
   {
@@ -38,19 +42,25 @@ export const SKILL_GROUPS: SkillGroup[] = [
     skills: [
       { name: 'Python', icon: 'assets/icons/python.png' },
       { name: 'FastAPI', icon: 'assets/icons/fastapi.png' },
-      { name: 'Node.js' },
-      { name: 'Express.js' },
-      { name: 'REST APIs' },
+      { name: 'Express.js', icon: 'assets/icons/expressjs.png' },
+      { name: 'REST APIs', icon: 'assets/icons/restapis.png' },
+      { name: 'C++', icon: 'assets/icons/C++.png' },
+      { name: 'Docker', icon: 'assets/icons/docker.png' },
+      { name: 'Bash', icon: 'assets/icons/bash.png' },
+      { name: 'Postman', icon: 'assets/icons/postman.png' }
     ],
   },
   {
     title: 'Cloud & Data',
     skills: [
+      { name: 'Git', icon: 'assets/icons/git.png' },
       { name: 'PostgreSQL', icon: 'assets/icons/postgresql.png' },
-      { name: 'Supabase' },
-      { name: 'MySQL' },
-      { name: 'Docker' },
-      { name: 'Git' },
+      { name: 'MySQL', icon: 'assets/icons/sql.png' },
+      { name: 'MongoDB', icon: 'assets/icons/mongodb.png' },
+      { name: 'Supabase', icon: 'assets/icons/supabase.png' },
+      { name: 'Firestore', icon: 'assets/icons/firestore.png' },
+      { name: 'Excel', icon: 'assets/icons/excel.png' },
+      { name: 'Claude Code', icon: 'assets/icons/claude.png' }
     ],
   },
 ];
