@@ -49,25 +49,28 @@
     </div>
   </section>
 
-  <section class="projects container">
+  <section class="projects container" id="projects">
     <div class="projects containerGlass section-card projects-card">
       <app-section-title text="Projects" />
 
-      <div class="project-grid">
-         @if (loading()) {
-          <div class="grid">
-            @for (s of skeletons; track s) {
-              <div class="card project-card">
-                <div class="skeleton" style="height: 1.3rem; width: 60%; margin-bottom: 1rem;"></div>
-                <div class="skeleton" style="height: 0.9rem; width: 100%; margin-bottom: 0.5rem;"></div>
-                <div class="skeleton" style="height: 0.9rem; width: 80%; margin-bottom: 1.2rem;"></div>
-                <div class="skeleton" style="height: 1.4rem; width: 50%;"></div>
-              </div>
-            }
-          </div>
-        } @else if (error()) {
-          <div class="alert alert-error">{{ error() }}</div>
-        } @else {
+      @if (loading()) {
+        <!-- Placeholder cards while the API (possibly a cold Render instance) responds -->
+        <div class="project-grid" aria-busy="true" aria-label="Loading projects">
+          @for (s of skeletons; track s) {
+            <div class="project-card" aria-hidden="true">
+              <div class="project-image skeleton"></div>
+              <div class="skeleton skeleton-line"></div>
+              <div class="skeleton skeleton-line short"></div>
+            </div>
+          }
+        </div>
+      } @else if (error()) {
+        <p class="projects-message projects-error" role="alert">
+          {{ error() }}
+          <button class="btn-2 btn-lg retry" type="button" (click)="retry()">Try again</button>
+        </p>
+      } @else {
+        <div class="project-grid">
           @for (project of projects(); track project.id) {
             <article class="project-card">
               <div class="project-image">
@@ -95,10 +98,11 @@
                 </ul>
               </div>
             </article>
+          } @empty {
+            <p class="projects-message">No projects published yet. Check back soon.</p>
           }
-
-        }
-      </div>
+        </div>
+      }
     </div>
   </section>
 

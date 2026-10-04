@@ -1,5 +1,4 @@
 // Static content for the Home page.
-import { Project } from '../../models/models';
 
 export interface StackItem {
   name: string;
@@ -48,56 +47,3 @@ export const STACK_ROWS: StackItem[][] = [
 ];
 
 export const PROJECT_IMAGE_FALLBACK = 'assets/projects/placeholder.jpg';
-
-/**
- * Draft project cards. Temporary: they mirror the backend `Project` shape so the
- * Home page can later switch to `ProjectService.projects` without template changes.
- */
-export const DRAFT_PROJECTS: Project[] = [
-  {
-    id: 1,
-    title: 'Developer Portfolio',
-    description:
-      'Decoupled full-stack portfolio: Angular SPA, FastAPI backend with a JWT-protected admin and a cached GitHub proxy.',
-    techStack: ['Angular','TypeScript','FastAPI','Python','PostgreSQL'],
-    repoUrl: 'https://github.com/Michos12/portafolio',
-    liveUrl: 'https://michaelveliz.com',
-    imageUrl: null,
-    featured: true,
-    order: 1,
-  },
-  {
-    id: 2,
-    title: 'FlatFinder',
-    description:
-      'Property-management platform to track rentals, tenants and rent, and browse nearby listings.',
-    techStack: ["JavaScript","Angular","REST API","Firestore","Docker"],
-    repoUrl: 'https://github.com/Michos12/FlatFinder-BackEnd',
-    liveUrl: null,
-    imageUrl: null,
-    featured: true,
-    order: 2,
-  },
-  {
-    id: 3,
-    title: 'FocusFlow',
-    description: 'Task manager with a React interface, a Node.js API and a MySQL database.',
-    techStack: ['TypeScript','React', 'Node.js', 'MySQL'],
-    repoUrl: 'https://github.com/Michos12/FocusFlow',
-    liveUrl: null,
-    imageUrl: null,
-    featured: false,
-    order: 3,
-  },
-  {
-    id: 4,
-    title: 'Bacano',
-    description: 'Work-in-progress online home for an Ecuadorian restaurant, with Shopify planned.',
-    techStack: ['TypeScript', 'Shopify'],
-    repoUrl: 'https://github.com/Michos12/Bacano',
-    liveUrl: null,
-    imageUrl: null,
-    featured: false,
-    order: 4,
-  },
-];
