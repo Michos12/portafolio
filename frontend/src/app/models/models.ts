@@ -41,12 +41,3 @@ export interface Token {
   accessToken: string;
   tokenType: string;
 }
-
-export interface GithubRepo {
-  name: string;
-  description: string | null;
-  url: string;
-  stars: number;
-  language: string | null;
-  updatedAt: string;
-}

@@ -1,4 +1,5 @@
-import { Routes } from '@angular/router';
+import { inject } from '@angular/core';
+import { Router, Routes } from '@angular/router';
 
 // Lazy-loaded standalone pages. Keeps the initial bundle small.
 export const routes: Routes = [
@@ -12,15 +13,14 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/about/about').then((m) => m.About),
     title: 'About — Michel Corozo',
   },
+  // Legacy pages removed in the redesign: keep old links and bookmarks working.
   {
     path: 'projects',
-    loadComponent: () => import('./pages/projects/projects').then((m) => m.Projects),
-    title: 'Projects — Michel Corozo',
+    redirectTo: () => inject(Router).createUrlTree(['/'], { fragment: 'projects' }),
   },
   {
     path: 'contact',
-    loadComponent: () => import('./pages/contact/contact').then((m) => m.Contact),
-    title: 'Contact — Michel Corozo',
+    redirectTo: () => inject(Router).createUrlTree(['/about'], { fragment: 'contact' }),
   },
   {
     path: 'admin',
