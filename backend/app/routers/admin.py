@@ -3,17 +3,20 @@
 All write routes depend on get_current_admin (valid JWT).
 """
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Request
 
 from ..auth import authenticate_admin, create_access_token, get_current_admin
 from ..db import get_supabase
+from ..limiter import limiter
 from ..schemas import LoginRequest, Project, ProjectCreate, ProjectUpdate, Token
 
 router = APIRouter(prefix="/api/admin", tags=["admin"])
 
 
+# Throttled per client IP to block password brute-forcing.
 @router.post("/login", response_model=Token)
-def login(payload: LoginRequest):
+@limiter.limit("5/minute")
+def login(request: Request, payload: LoginRequest):
     if not authenticate_admin(payload.username, payload.password):
         raise HTTPException(status_code=401, detail="Invalid credentials")
     return Token(access_token=create_access_token(payload.username))
